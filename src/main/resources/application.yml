@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: forum-2508
+  profiles:
+    active: dev
+
+server:
+  port: 9811
+  servlet:
+    context-path: /bfkt
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    callSettersOnNulls: true

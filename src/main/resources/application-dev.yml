@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    username: root
+    password: "123456"
+    url: jdbc:mysql://localhost:3306/forum_2508?serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+  mvc:
+    logRequestDetails: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+  basic:
+    enable: true
+    username: root
+    password: 123
+  cors: true

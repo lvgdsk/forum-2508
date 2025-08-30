@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    username: forum#bfkt
+    password: "#r2&fr!efwe45087p*%d9r"
+    url: jdbc:mysql://172.30.97.221:3307/forum_2508?serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+  mvc:
+    logRequestDetails: true

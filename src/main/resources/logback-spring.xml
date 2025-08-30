@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--日志文件主目录：这里${user.home}为当前服务器用户主目录-->
+    <property name="LOG_HOME" value="/logs"/>
+    <!-- 需在spring boot配置文件内配置spring.application.name -->
+    <springProperty scope="context" name="APP_NAME" source="spring.application.name"/>
+
+    <appender name="commonRollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!--不记录ERROR日志-->
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 日志在：用户目录/应用名 目录下，每1天滚动一次 -->
+            <fileNamePattern>${LOG_HOME}/${APP_NAME}/log-%d{yyyy-MM-dd,UTC}-%i.log</fileNamePattern>
+            <!-- 每个文件最多20MB，保存10天的历史记录，但最多1GB -->
+            <maxFileSize>20MB</maxFileSize>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy‐MM‐dd HH:mm:ss.SSS} %5p ${PID:-} [%15.15t] %-40.40logger{39} : %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="errorRollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <!--只记录ERROR日志-->
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- 日志在：用户目录/应用名 目录下，每1天滚动一次 -->
+            <fileNamePattern>${LOG_HOME}/${APP_NAME}/err-%d{yyyy-MM-dd,UTC}-%i.log</fileNamePattern>
+            <!-- 每个文件最多10MB，保存30天的历史记录，但最多1GB -->
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy‐MM‐dd HH:mm:ss.SSS} %5p ${PID:-} [%15.15t] %-40.40logger{39} : %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %5p ${PID:-} [%15.15t] %-40.40logger{39} : %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="commonRollingFile"/>
+        <appender-ref ref="errorRollingFile"/>
+        <appender-ref ref="consoleLog" />
+    </root>
+
+    <logger name="com.bfkt.forum.mapper" level="DEBUG"/>
+</configuration>
