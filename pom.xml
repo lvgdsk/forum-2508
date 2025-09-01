@@ -145,7 +145,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <finalName>forum-service</finalName>
+                    <finalName>forum-2508</finalName>
                 </configuration>
             </plugin>
         </plugins>
