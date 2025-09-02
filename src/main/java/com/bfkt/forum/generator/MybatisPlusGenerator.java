@@ -43,7 +43,7 @@ public class MybatisPlusGenerator {
                 })
 
                 .strategyConfig(builder -> {
-                    builder.addInclude("sys_user")
+                    builder.addInclude("topic")
                             .entityBuilder()
                             .enableLombok()
                             .enableFileOverride();
