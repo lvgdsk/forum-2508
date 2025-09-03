@@ -13,4 +13,7 @@ public class TopicPo {
 
     @Schema(description = "标题")
     private String title;
+
+    @Schema(description = "当前目录")
+    private String curDir;
 }

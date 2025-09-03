@@ -52,4 +52,9 @@ public class Topic implements Serializable {
      * 采集替换规则
      */
     private String replaceRule;
+
+    /**
+     * 当前目录
+     */
+    private String curDir;
 }

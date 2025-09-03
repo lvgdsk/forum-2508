@@ -37,6 +37,7 @@ public class TopicService {
     public IPage<Topic> page(TopicPo topicPo) {
         LambdaQueryWrapper<Topic> queryWrapper = Wrappers.lambdaQuery(Topic.class);
         queryWrapper.like(CharSequenceUtil.isNotBlank(topicPo.getTitle()), Topic::getTitle, topicPo.getTitle());
+        queryWrapper.eq(CharSequenceUtil.isNotBlank(topicPo.getCurDir()), Topic::getCurDir, topicPo.getCurDir());
         return iTopicService.page(
                 new Page<>(topicPo.getPageNo(), topicPo.getPageSize()),
                 queryWrapper
