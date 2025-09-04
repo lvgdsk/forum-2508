@@ -33,4 +33,4 @@ EXPOSE 9811
 COPY --from=builder /app/target/forum-2508.jar /app/forum-2508.jar
 
 # 运行 JAR 文件
-ENTRYPOINT ["java", "-Xmx1024m" , "-jar", "/app/forum-2508.jar", "--spring.profiles.active=prod"]
+ENTRYPOINT ["java", "-Xmx1024m" , "-jar", "/app/forum-2508.jar", "--spring.profiles.active=prd"]
